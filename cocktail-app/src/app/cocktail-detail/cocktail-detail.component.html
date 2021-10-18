@@ -1,0 +1,10 @@
+<div *ngIf="cocktail">
+
+    <h2>{{cocktail.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{cocktail.id}}</div>
+    <div>
+      <label for="cocktail-name">cocktail name: </label>
+      <input id="cocktail-name" [(ngModel)]="cocktail.name" placeholder="name">
+    </div>
+  
+  </div>

@@ -1,0 +1,19 @@
+<h2>All Cocktails</h2>
+<ul class="cocktails">
+    <li *ngFor="let cocktail of cocktails"
+    [class.selected]="cocktail === selectedCocktail"
+    (click)="onSelect(cocktail)">
+    <span class="badge">{{cocktail.id}}</span> {{cocktail.name}}
+  </li>
+</ul>
+
+<div *ngIf="selectedCocktail">
+
+  <h2>{{selectedCocktail.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedCocktail.id}}</div>
+  <div>
+    <label for="cocktail-name">Cocktail name: </label>
+    <input id="cocktail-name" [(ngModel)]="selectedCocktail.name" placeholder="name">
+  </div>
+
+</div>

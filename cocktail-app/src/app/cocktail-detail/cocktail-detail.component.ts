@@ -1,5 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { Cocktail } from '../cocktail';
+import { CocktailService } from '../cocktail.service';
 
 
 @Component({
@@ -8,12 +12,25 @@ import { Cocktail } from '../cocktail';
   styleUrls: ['./cocktail-detail.component.css']
 })
 export class CocktailDetailComponent implements OnInit {
+  cocktail: Cocktail | undefined;
 
-  @Input() cocktail?: Cocktail;
-
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private cocktailService: CocktailService,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
+    this.getCocktail();
   }
 
+  getCocktail(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.cocktailService.getCocktail(id)
+      .subscribe(cocktail => this.cocktail = cocktail);
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
 }

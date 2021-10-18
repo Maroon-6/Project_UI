@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Cocktail } from '../cocktail';
 import { CocktailService } from '../cocktail.service';
-import { MessageService } from '../message.service';
-
-
 
 @Component({
-  selector: 'app-cocktails',
-  templateUrl: './cocktails.component.html',
-  styleUrls: ['./cocktails.component.css']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: [ './dashboard.component.css' ]
 })
-export class CocktailsComponent implements OnInit {
+export class DashboardComponent implements OnInit {
   cocktails: Cocktail[] = [];
 
   constructor(private cocktailService: CocktailService) { }
@@ -21,6 +18,6 @@ export class CocktailsComponent implements OnInit {
 
   getCocktails(): void {
     this.cocktailService.getCocktails()
-        .subscribe(cocktails => this.cocktails = cocktails);
+      .subscribe(cocktails => this.cocktails = cocktails.slice(1, 5));
   }
 }

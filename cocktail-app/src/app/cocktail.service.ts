@@ -8,8 +8,7 @@ import { MessageService } from './message.service';
 
 
 @Injectable({
-  providedIn: 'root'
-})
+  providedIn: 'root'})
 export class CocktailService {
 
   constructor(private messageService: MessageService) { }
@@ -18,5 +17,10 @@ export class CocktailService {
     const cocktails = of(COCKTAILS);
     this.messageService.add('CocktailService: fetched cocktails');
     return cocktails;
+  }
+  getCocktail(id: number): Observable<Cocktail> {
+    const cocktail = COCKTAILS.find(c => c.id === id)!;
+    this.messageService.add(`CocktailService: fetched cocktail id=${id}`);
+    return of(cocktail);
   }
 }

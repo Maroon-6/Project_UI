@@ -1,10 +1,8 @@
 <h2>All Cocktails</h2>
 <ul class="cocktails">
-    <li *ngFor="let cocktail of cocktails"
-    [class.selected]="cocktail === selectedCocktail"
-    (click)="onSelect(cocktail)">
-    <span class="badge">{{cocktail.id}}</span> {{cocktail.name}}
+    <li *ngFor="let cocktail of cocktails">
+      <a routerLink="/detail/{{cocktail.id}}">
+        <span class="badge">{{cocktail.id}}</span> {{cocktail.name}}
+      </a>
   </li>
 </ul>
-
-<app-cocktail-detail [cocktail]="selectedCocktail"></app-cocktail-detail>

@@ -7,13 +7,4 @@
   </li>
 </ul>
 
-<div *ngIf="selectedCocktail">
-
-  <h2>{{selectedCocktail.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{selectedCocktail.id}}</div>
-  <div>
-    <label for="cocktail-name">Cocktail name: </label>
-    <input id="cocktail-name" [(ngModel)]="selectedCocktail.name" placeholder="name">
-  </div>
-
-</div>
+<app-cocktail-detail [cocktail]="selectedCocktail"></app-cocktail-detail>

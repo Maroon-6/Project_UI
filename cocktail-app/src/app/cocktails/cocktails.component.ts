@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Cocktail } from '../cocktail';
-import { COCKTAILS } from '../mock-cocktails';
+import { CocktailService } from '../cocktail.service';
+import { MessageService } from '../message.service';
+
 
 
 @Component({
@@ -10,15 +12,23 @@ import { COCKTAILS } from '../mock-cocktails';
 })
 export class CocktailsComponent implements OnInit {
   
-  cocktails = COCKTAILS;
   selectedCocktail?: Cocktail;
 
-  constructor() { }
+  cocktails: Cocktail[] = [];
+
+  constructor(private cocktailService: CocktailService, private messageService: MessageService) { }
 
   ngOnInit() {
+    this.getCocktails();
   }
 
   onSelect(cocktail: Cocktail): void {
     this.selectedCocktail = cocktail;
+    this.messageService.add(`CocktailsComponent: Selected cocktail id=${cocktail.id}`);
+  }
+
+  getCocktails(): void {
+    this.cocktailService.getCocktails()
+        .subscribe(cocktails => this.cocktails = cocktails);
   }
 }

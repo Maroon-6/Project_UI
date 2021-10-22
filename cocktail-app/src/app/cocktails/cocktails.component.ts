@@ -23,4 +23,18 @@ export class CocktailsComponent implements OnInit {
     this.cocktailService.getCocktails()
         .subscribe(cocktails => this.cocktails = cocktails);
   }
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.cocktailService.addCocktail({ name } as Cocktail)
+      .subscribe(cocktail => {
+        this.cocktails.push(cocktail);
+      });
+  }
+
+  delete(cocktail: Cocktail): void {
+    this.cocktails = this.cocktails.filter(h => h !== cocktail);
+    this.cocktailService.deleteCocktail(cocktail.id).subscribe();
+  }
+
 }

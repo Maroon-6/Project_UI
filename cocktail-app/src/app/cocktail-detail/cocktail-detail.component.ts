@@ -25,12 +25,19 @@ export class CocktailDetailComponent implements OnInit {
   }
 
   getCocktail(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
     this.cocktailService.getCocktail(id)
       .subscribe(cocktail => this.cocktail = cocktail);
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  save(): void {
+    if (this.cocktail) {
+      this.cocktailService.updateCocktail(this.cocktail)
+        .subscribe(() => this.goBack());
+    }
   }
 }

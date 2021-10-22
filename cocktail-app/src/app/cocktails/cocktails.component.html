@@ -1,8 +1,19 @@
-<h2>All Cocktails</h2>
+<div>
+  <label for="new-cocktail">Cocktail name: </label>
+  <input id="new-cocktail" #cocktailName />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button class="add-button" (click)="add(cocktailName.value); cocktailName.value=''">
+    Add cocktail
+  </button>
+</div>
+
 <ul class="cocktails">
-    <li *ngFor="let cocktail of cocktails">
-      <a routerLink="/detail/{{cocktail.id}}">
-        <span class="badge">{{cocktail.id}}</span> {{cocktail.name}}
-      </a>
+  <li *ngFor="let cocktail of cocktails">
+    <a routerLink="/detail/{{cocktail.id}}">
+      <span class="badge">{{cocktail.id}}</span> {{cocktail.name}}
+    </a>
+    <button class="delete" title="delete cocktail"
+      (click)="delete(cocktail)">x</button>
   </li>
 </ul>

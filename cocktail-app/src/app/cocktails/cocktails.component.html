@@ -8,12 +8,23 @@
   </button>
 </div>
 
-<ul class="cocktails">
-  <li *ngFor="let cocktail of cocktails">
-    <a routerLink="/detail/{{cocktail.id}}">
-      <span class="badge">{{cocktail.id}}</span> {{cocktail.name}}
-    </a>
-    <button class="delete" title="delete cocktail"
-      (click)="delete(cocktail)">x</button>
-  </li>
-</ul>
+<table class="cocktail-table">
+  <thead>
+  <tr>
+    <th scope="col"> Recipe ID</th>
+    <th scope="col"> Cocktail</th>
+    <th scope="col"> Description</th>
+    <th scope="col">Creator</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let p of cocktailInfo; index as i">
+    <td>
+      {{recipeName}}
+    </td>
+    <td>p.description</td>
+    <td>p.creator</td>
+  </tr>
+  </tbody>
+
+</table>

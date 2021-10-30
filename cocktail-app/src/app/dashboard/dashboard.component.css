@@ -46,5 +46,6 @@ a {
 }
 
 a:hover {
+  border-style: double;
   background-color: #000;
 }

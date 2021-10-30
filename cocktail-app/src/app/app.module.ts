@@ -12,6 +12,8 @@ import { CocktailDetailComponent } from './cocktail-detail/cocktail-detail.compo
 import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CocktailSearchComponent } from './cocktail-search/cocktail-search.component';
+import { OrdersComponent } from './orders/orders.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { CocktailSearchComponent } from './cocktail-search/cocktail-search.compo
     CocktailDetailComponent,
     MessagesComponent,
     DashboardComponent,
-    CocktailSearchComponent
+    CocktailSearchComponent,
+    OrdersComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

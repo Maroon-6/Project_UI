@@ -10,7 +10,8 @@ import { MessageService } from './message.service';
 
 @Injectable({providedIn: 'root'})
 export class CocktailService {
-  private cocktailsUrl = 'api/cocktails';  // URL to web api
+  //private cocktailsUrl = 'api/cocktails';  // URL to web api
+  private cocktailsUrl='127.0.0.1:5000';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,7 +20,7 @@ export class CocktailService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
-  
+
   /** GET cocktails from the server */
   getCocktails(): Observable<Cocktail[]> {
       return this.http.get<Cocktail[]>(this.cocktailsUrl)

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cocktail } from '../cocktail';
 import { CocktailService } from '../cocktail.service';
 import {NgForm} from "@angular/forms";
-// import {CocktailsServiceService} from "./cocktails-service.service";
+import {CocktailsServiceService} from "./cocktails-service.service";
 
 
 @Component({
@@ -13,16 +13,16 @@ import {NgForm} from "@angular/forms";
 export class CocktailsComponent implements OnInit {
 
   toggleCocktails: boolean;
-  recipeName: string = '';
-  cocktailsService: CocktailService;
+  recipeName: string;
+  cocktailsService: CocktailsServiceService;
   cocktailInfo: Cocktail[];
 
 
-  constructor( cocktailsService: CocktailService) {
+  constructor( cocktailsService: CocktailsServiceService) {
     this.toggleCocktails = false;
     //this.recipeName = null;
     this.cocktailsService = cocktailsService;
-    this.cocktailInfo = new Array<Cocktail>();
+    //this.cocktailInfo = null;
   }
 
   ngOnInit(): void {
@@ -40,8 +40,8 @@ export class CocktailsComponent implements OnInit {
   onLookup(e: Event): void {
     this.recipeName = (<HTMLInputElement> e.target).value;
     if(this.recipeName.length>5) {
-      this.cocktailsService.getCocktails()
-        .subscribe((data)=> this.setCocktailInfo(data));
+      this.cocktailsService.getCocktails(this.recipeName)
+        .subscribe((data: Cocktail[])=> this.setCocktailInfo(data));
     }
   }
 
@@ -49,8 +49,8 @@ export class CocktailsComponent implements OnInit {
   add(name: string): void {
     name = name.trim();
     if (!name) { return; }
-    this.cocktailsService.addCocktail({ name } as Cocktail)
-      .subscribe(cocktail => {
+    this.cocktailsService.add({ name } as Cocktail)
+      .subscribe((cocktail: any) => {
         this.cocktailInfo.push(cocktail);
       });
   }
@@ -61,6 +61,3 @@ export class CocktailsComponent implements OnInit {
   }
 
 }
-
-
-
